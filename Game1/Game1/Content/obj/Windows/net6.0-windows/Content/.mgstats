@@ -1,1 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/jaker/source/repos/jrmckown/Game1/Game1/Game1/Content/idle.png","C:/Users/jaker/source/repos/jrmckown/Game1/Game1/Game1/Content/bin/Windows/Content/idle.xnb","TextureProcessor","Texture2DContent",863,8005,0.1789985
+"C:/Users/jaker/source/repos/jrmckown/Game1/Game1/Game1/Content/kinemon_idle.png","C:/Users/jaker/source/repos/jrmckown/Game1/Game1/Game1/Content/bin/Windows/Content/kinemon_idle.xnb","TextureProcessor","Texture2DContent",1132,16469,0.1825623
