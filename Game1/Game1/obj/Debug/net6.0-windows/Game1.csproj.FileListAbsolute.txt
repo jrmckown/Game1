@@ -76,3 +76,5 @@ C:\Users\Jake\Source\Repos\Game1\Game1\Game1\obj\Debug\net6.0-windows\refint\Gam
 C:\Users\Jake\Source\Repos\Game1\Game1\Game1\obj\Debug\net6.0-windows\Game1.pdb
 C:\Users\Jake\Source\Repos\Game1\Game1\Game1\obj\Debug\net6.0-windows\Game1.genruntimeconfig.cache
 C:\Users\Jake\Source\Repos\Game1\Game1\Game1\obj\Debug\net6.0-windows\ref\Game1.dll
+C:\Users\Jake\Source\Repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\dojo_background.xnb
+C:\Users\Jake\Source\Repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\Target.xnb

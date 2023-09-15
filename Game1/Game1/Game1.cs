@@ -8,11 +8,16 @@ namespace Game1
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        Texture2D target;
         KinemonSprite kinemon;
+        Background background;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+
+            _graphics.PreferredBackBufferWidth = 800;
+            _graphics.PreferredBackBufferHeight = 600;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -21,6 +26,7 @@ namespace Game1
         {
             // TODO: Add your initialization logic here
             kinemon = new KinemonSprite();
+            background = new Background();
             base.Initialize();
         }
 
@@ -28,6 +34,8 @@ namespace Game1
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             kinemon.LoadContent(Content);
+            background.LoadContent(Content);
+            target = Content.Load<Texture2D>("Target");
             // TODO: use this.Content to load your game content here
         }
 
@@ -45,10 +53,12 @@ namespace Game1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
+            background.Draw(_spriteBatch);
+            Vector2 targetPos = new Vector2(600, 380);
+            _spriteBatch.Draw(target, targetPos, null, Color.White);
             kinemon.Draw(gameTime, _spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
-            
         }
     }
 }

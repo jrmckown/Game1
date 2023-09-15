@@ -18,6 +18,7 @@ namespace Game1
 
         private KeyboardState keyboardState;
 
+
         private Texture2D texture;
 
         private bool flipped;
@@ -28,9 +29,10 @@ namespace Game1
 
         bool isGrounded = true;
 
-        Vector2 position = new Vector2(200, 200); // change to middle stage
+        Vector2 position = new Vector2(200, 360); // change to middle stage
 
         Vector2 velocity;
+        Vector2 gravity = new Vector2(0, 10);
 
         /// <summary>
         /// loads bat sprite
@@ -39,6 +41,7 @@ namespace Game1
         public void LoadContent(ContentManager content)
         {
             texture = content.Load<Texture2D>("idle");
+            
         }
 
 
@@ -54,14 +57,14 @@ namespace Game1
             keyboardState = Keyboard.GetState();
 
             //move kinemon in direction
-            // Apply the gamepad movement with inverted Y axis
-            position += gamePadState.ThumbSticks.Left * new Vector2(5, -5);
-            if (gamePadState.ThumbSticks.Left.X < 0) flipped = true;
-            if (gamePadState.ThumbSticks.Left.X > 0) flipped = false;
 
 
             // Apply keyboard movement
-            if ((keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W)) && isGrounded) velocity += new Vector2(0, -10);
+            if ((keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W)) && isGrounded)
+            {
+                velocity += new Vector2(0, -10);
+            }
+            
             //if (keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S)) position += new Vector2(0, 5); // create crouching capability
 
             if (keyboardState.IsKeyDown(Keys.Left) || keyboardState.IsKeyDown(Keys.A))
@@ -76,7 +79,13 @@ namespace Game1
                 flipped = false;
             }
 
+            if (!isGrounded)
+            {
+               
+            }
+            velocity += gravity * t;
             position += velocity * t;
+            
         }
         /// <summary>
         /// draws the animated sprite
@@ -97,7 +106,7 @@ namespace Game1
             }
             SpriteEffects spriteEffects = (flipped) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             var source = new Rectangle(animationFrame * 30, 0, 30, 22);
-            spriteBatch.Draw(texture, position, source, Color.White, 0, new Vector2(0), 6, spriteEffects, 0);
+            spriteBatch.Draw(texture, position, source, Color.White, 0, new Vector2(0), 8, spriteEffects, 0);
         }
 
     }
