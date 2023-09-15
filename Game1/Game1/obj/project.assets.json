@@ -7504,19 +7504,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jake\\.nuget\\packages\\": {}
+    "C:\\Users\\jaker\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jake\\Source\\Repos\\Game1\\Game1\\Game1\\Game1.csproj",
+      "projectUniqueName": "C:\\Users\\jaker\\Source\\Repos\\Game1\\Game1\\Game1\\Game1.csproj",
       "projectName": "Game1",
-      "projectPath": "C:\\Users\\Jake\\Source\\Repos\\Game1\\Game1\\Game1\\Game1.csproj",
-      "packagesPath": "C:\\Users\\Jake\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jake\\Source\\Repos\\Game1\\Game1\\Game1\\obj\\",
+      "projectPath": "C:\\Users\\jaker\\Source\\Repos\\Game1\\Game1\\Game1\\Game1.csproj",
+      "packagesPath": "C:\\Users\\jaker\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jaker\\Source\\Repos\\Game1\\Game1\\Game1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Jake\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jaker\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7570,7 +7570,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

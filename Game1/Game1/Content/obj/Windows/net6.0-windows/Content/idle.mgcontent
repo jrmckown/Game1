@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/Jake/Source/Repos/Game1/Game1/Game1/Content/idle.png</SourceFile>
-  <SourceTime>2023-09-15T14:34:36.6956139-05:00</SourceTime>
-  <DestFile>C:/Users/Jake/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/idle.xnb</DestFile>
-  <DestTime>2023-09-15T14:35:57.5364871-05:00</DestTime>
+  <SourceFile>C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/idle.png</SourceFile>
+  <SourceTime>2023-09-15T17:01:41.8811151-05:00</SourceTime>
+  <DestFile>C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/idle.xnb</DestFile>
+  <DestTime>2023-09-15T17:01:56.6037009-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T06:44:56-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

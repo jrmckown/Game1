@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/Jake/Source/Repos/Game1/Game1/Game1/Content/dojo_background.png</SourceFile>
-  <SourceTime>2023-09-15T15:02:36.68975-05:00</SourceTime>
-  <DestFile>C:/Users/Jake/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/dojo_background.xnb</DestFile>
-  <DestTime>2023-09-15T15:11:09.304426-05:00</DestTime>
+  <SourceFile>C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/dojo_background.png</SourceFile>
+  <SourceTime>2023-09-15T17:01:41.8801147-05:00</SourceTime>
+  <DestFile>C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/dojo_background.xnb</DestFile>
+  <DestTime>2023-09-15T17:01:56.5895542-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T06:44:56-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

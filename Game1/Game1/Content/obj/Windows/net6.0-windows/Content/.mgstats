@@ -1,5 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/Jake/Source/Repos/Game1/Game1/Game1/Content/dojo_background.png","C:/Users/Jake/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/dojo_background.xnb","TextureProcessor","Texture2DContent",191962,1920085,0.2948255
-"C:/Users/Jake/Source/Repos/Game1/Game1/Game1/Content/idle.png","C:/Users/Jake/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/idle.xnb","TextureProcessor","Texture2DContent",863,8005,0.1880976
-"C:/Users/Jake/Source/Repos/Game1/Game1/Game1/Content/kinemon_idle.png","C:/Users/Jake/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/kinemon_idle.xnb","TextureProcessor","Texture2DContent",1132,16469,0.0042018
-"C:/Users/Jake/Source/Repos/Game1/Game1/Game1/Content/Target.png","C:/Users/Jake/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/Target.xnb","TextureProcessor","Texture2DContent",2208,69781,0.2489568
+"C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/dojo_background.png","C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/dojo_background.xnb","TextureProcessor","Texture2DContent",191962,1920085,0.256525
+"C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/idle.png","C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/idle.xnb","TextureProcessor","Texture2DContent",863,8005,0.0026186
+"C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/kinemon_idle.png","C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/kinemon_idle.xnb","TextureProcessor","Texture2DContent",1132,16469,0.0027515
+"C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/Target.png","C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/Target.xnb","TextureProcessor","Texture2DContent",2208,69781,0.0038153

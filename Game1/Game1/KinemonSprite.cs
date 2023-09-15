@@ -29,10 +29,10 @@ namespace Game1
 
         bool isGrounded = true;
 
-        Vector2 position = new Vector2(200, 360); // change to middle stage
+        Vector2 position = new Vector2(200, 360); // set to middle stage
 
         Vector2 velocity;
-        Vector2 gravity = new Vector2(0, 10);
+        Vector2 gravity = new Vector2(0, 1300);
 
         /// <summary>
         /// loads bat sprite
@@ -56,36 +56,46 @@ namespace Game1
             gamePadState = GamePad.GetState(0);
             keyboardState = Keyboard.GetState();
 
-            //move kinemon in direction
+            //check if grounded
+            if (position.Y >= 360) isGrounded = true;
 
+            else isGrounded = false;
+
+            //reset velocity if on ground
+            if (isGrounded) velocity.Y = 0;
 
             // Apply keyboard movement
             if ((keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W)) && isGrounded)
             {
-                velocity += new Vector2(0, -10);
+                velocity += new Vector2(0, -700);
             }
             
             //if (keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S)) position += new Vector2(0, 5); // create crouching capability
 
+            //strafe left
             if (keyboardState.IsKeyDown(Keys.Left) || keyboardState.IsKeyDown(Keys.A))
             {
                 position += new Vector2(-5, 0);
                 flipped = true;
             }
 
+            //strafe right
             if (keyboardState.IsKeyDown(Keys.Right) || keyboardState.IsKeyDown(Keys.D))
             {
                 position += new Vector2(5, 0);
                 flipped = false;
             }
 
+            //check if grounded
             if (!isGrounded)
             {
-               
+                velocity += gravity * t;
             }
-            velocity += gravity * t;
             position += velocity * t;
             
+            //if (velocity.Y == 70) velocity.Y = 0;
+            //acceleration = 9.8 m/s^2
+
         }
         /// <summary>
         /// draws the animated sprite
