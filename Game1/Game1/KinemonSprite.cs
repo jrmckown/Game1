@@ -10,13 +10,6 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Game1
 {
-    public enum Direction
-    {
-        Down,
-        Right,
-        Up,
-        Left,
-    }
 
     public class KinemonSprite
     {
@@ -28,16 +21,11 @@ namespace Game1
 
         private bool flipped;
 
-        private double directionTimer;
-
         private double animationTimer;
 
         private short animationFrame = 1;
 
-
-        public Direction Direction;
-
-        Vector2 position;
+        Vector2 position = new Vector2(200, 200);
 
         /// <summary>
         /// loads bat sprite
@@ -56,8 +44,8 @@ namespace Game1
         public void Update(GameTime gametime)
         {
 
-
-
+            gamePadState = GamePad.GetState(0);
+            keyboardState = Keyboard.GetState();
             //move kinemon in direction
             // Apply the gamepad movement with inverted Y axis
             position += gamePadState.ThumbSticks.Left * new Vector2(5, -5);
@@ -68,6 +56,7 @@ namespace Game1
             // Apply keyboard movement
             if (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W)) position += new Vector2(0, -5);
             if (keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S)) position += new Vector2(0, 5);
+
             if (keyboardState.IsKeyDown(Keys.Left) || keyboardState.IsKeyDown(Keys.A))
             {
                 position += new Vector2(-5, 0);
@@ -98,8 +87,9 @@ namespace Game1
                 if (animationFrame > 2) animationFrame = 1;
                 animationTimer -= 0.3;
             }
-            var source = new Rectangle(animationFrame * 32, (int)Direction * 32, 32, 32);
-            spriteBatch.Draw(texture, position, source, Color.White, 0, new Vector2(0), 2, SpriteEffects.None, 0);
+            SpriteEffects spriteEffects = (flipped) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            var source = new Rectangle(animationFrame * 30, 0, 30, 22);
+            spriteBatch.Draw(texture, position, source, Color.White, 0, new Vector2(0), 6, spriteEffects, 0);
         }
 
     }

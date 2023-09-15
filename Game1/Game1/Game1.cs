@@ -45,7 +45,6 @@ namespace Game1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
-            // TODO: Add your drawing code here
             kinemon.Draw(gameTime, _spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
