@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+using System.Drawing.Drawing2D;
 
 namespace Game1
 {
@@ -25,7 +26,11 @@ namespace Game1
 
         private short animationFrame = 1;
 
-        Vector2 position = new Vector2(200, 200);
+        bool isGrounded = true;
+
+        Vector2 position = new Vector2(200, 200); // change to middle stage
+
+        Vector2 velocity;
 
         /// <summary>
         /// loads bat sprite
@@ -44,8 +49,10 @@ namespace Game1
         public void Update(GameTime gametime)
         {
 
+            float t = (float)gametime.ElapsedGameTime.TotalSeconds;
             gamePadState = GamePad.GetState(0);
             keyboardState = Keyboard.GetState();
+
             //move kinemon in direction
             // Apply the gamepad movement with inverted Y axis
             position += gamePadState.ThumbSticks.Left * new Vector2(5, -5);
@@ -54,8 +61,8 @@ namespace Game1
 
 
             // Apply keyboard movement
-            if (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W)) position += new Vector2(0, -5);
-            if (keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S)) position += new Vector2(0, 5);
+            if ((keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W)) && isGrounded) velocity += new Vector2(0, -10);
+            //if (keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S)) position += new Vector2(0, 5); // create crouching capability
 
             if (keyboardState.IsKeyDown(Keys.Left) || keyboardState.IsKeyDown(Keys.A))
             {
@@ -69,6 +76,7 @@ namespace Game1
                 flipped = false;
             }
 
+            position += velocity * t;
         }
         /// <summary>
         /// draws the animated sprite
