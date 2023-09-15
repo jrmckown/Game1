@@ -4,8 +4,8 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/jaker/source/repos/jrmckown/Game1/Game1/Game1/Content/idle.png</File>
-    <File>C:/Users/jaker/source/repos/jrmckown/Game1/Game1/Game1/Content/kinemon_idle.png</File>
+    <File>C:/Users/Jake/Source/Repos/Game1/Game1/Game1/Content/idle.png</File>
+    <File>C:/Users/Jake/Source/Repos/Game1/Game1/Game1/Content/kinemon_idle.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
