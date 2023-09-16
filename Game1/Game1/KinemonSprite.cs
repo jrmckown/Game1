@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using System.Drawing.Drawing2D;
+using Game1.Collisions;
 
 namespace Game1
 {
@@ -18,6 +19,8 @@ namespace Game1
 
         private KeyboardState keyboardState;
 
+        private BoundingRectangle bounds = new BoundingRectangle(new Vector2(200, 360), 240, 22*8);
+        public BoundingRectangle Bounds => bounds;
 
         private Texture2D texture;
 
@@ -46,7 +49,7 @@ namespace Game1
 
 
         /// <summary>
-        /// updates bat pattern
+        /// updates kinemon sprite
         /// </summary>
         /// <param name="gametime"></param>
         public void Update(GameTime gametime)
@@ -92,10 +95,12 @@ namespace Game1
                 velocity += gravity * t;
             }
             position += velocity * t;
-            
+
             //if (velocity.Y == 70) velocity.Y = 0;
             //acceleration = 9.8 m/s^2
 
+            bounds.X = position.X;
+            bounds.Y = position.Y;
         }
         /// <summary>
         /// draws the animated sprite

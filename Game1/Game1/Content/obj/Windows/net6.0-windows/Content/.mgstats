@@ -1,4 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/ball.png","C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/ball.xnb","TextureProcessor","Texture2DContent",193670,1282133,0.1993681
 "C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/dojo_background.png","C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/dojo_background.xnb","TextureProcessor","Texture2DContent",191962,1920085,0.256525
 "C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/idle.png","C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/idle.xnb","TextureProcessor","Texture2DContent",863,8005,0.0026186
 "C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/kinemon_idle.png","C:/Users/jaker/Source/Repos/Game1/Game1/Game1/Content/bin/Windows/Content/kinemon_idle.xnb","TextureProcessor","Texture2DContent",1132,16469,0.0027515

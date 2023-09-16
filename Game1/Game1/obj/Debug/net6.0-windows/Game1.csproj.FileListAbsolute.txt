@@ -119,3 +119,4 @@ C:\Users\jaker\Source\Repos\Game1\Game1\Game1\obj\Debug\net6.0-windows\refint\Ga
 C:\Users\jaker\Source\Repos\Game1\Game1\Game1\obj\Debug\net6.0-windows\Game1.pdb
 C:\Users\jaker\Source\Repos\Game1\Game1\Game1\obj\Debug\net6.0-windows\Game1.genruntimeconfig.cache
 C:\Users\jaker\Source\Repos\Game1\Game1\Game1\obj\Debug\net6.0-windows\ref\Game1.dll
+C:\Users\jaker\Source\Repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\ball.xnb

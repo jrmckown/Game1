@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Runtime.CompilerServices;
 
 namespace Game1
 {
@@ -8,7 +9,8 @@ namespace Game1
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        Texture2D target;
+        Target target;
+        
         KinemonSprite kinemon;
         Background background;
 
@@ -19,6 +21,7 @@ namespace Game1
             _graphics.PreferredBackBufferWidth = 800;
             _graphics.PreferredBackBufferHeight = 600;
             Content.RootDirectory = "Content";
+            Window.Title = "Alley Fighter";
             IsMouseVisible = true;
         }
 
@@ -27,16 +30,20 @@ namespace Game1
             // TODO: Add your initialization logic here
             kinemon = new KinemonSprite();
             background = new Background();
+            target = new Target();
+            
+
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            
             kinemon.LoadContent(Content);
             background.LoadContent(Content);
-            target = Content.Load<Texture2D>("Target");
-            // TODO: use this.Content to load your game content here
+            target.LoadContent(Content);
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -44,7 +51,12 @@ namespace Game1
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             kinemon.Update(gameTime);
-            // TODO: Add your update logic here
+            target.Update(gameTime);
+
+            if (target.Bounds.CollidesWith(kinemon.Bounds))
+            {
+                target.Color = Color.Orange;
+            }
 
             base.Update(gameTime);
         }
@@ -53,10 +65,12 @@ namespace Game1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
+            
             background.Draw(_spriteBatch);
-            Vector2 targetPos = new Vector2(600, 380);
-            _spriteBatch.Draw(target, targetPos, null, Color.White);
+            target.Draw(_spriteBatch);
+            
             kinemon.Draw(gameTime, _spriteBatch);
+
             _spriteBatch.End();
             base.Draw(gameTime);
         }
