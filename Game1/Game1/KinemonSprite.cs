@@ -43,7 +43,7 @@ namespace Game1
         /// <param name="content"></param>
         public void LoadContent(ContentManager content)
         {
-            texture = content.Load<Texture2D>("idle");
+            texture = content.Load<Texture2D>("idle_Kinemon");
             
         }
 
@@ -68,7 +68,7 @@ namespace Game1
             if (isGrounded) velocity.Y = 0;
 
             // Apply keyboard movement
-            if ((keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W)) && isGrounded)
+            if ((keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W) || keyboardState.IsKeyDown(Keys.Space)) && isGrounded)
             {
                 velocity += new Vector2(0, -700);
             }
@@ -120,8 +120,8 @@ namespace Game1
                 animationTimer -= 0.3;
             }
             SpriteEffects spriteEffects = (flipped) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            var source = new Rectangle(animationFrame * 30, 0, 30, 22);
-            spriteBatch.Draw(texture, position, source, Color.White, 0, new Vector2(0), 8, spriteEffects, 0);
+            var source = new Rectangle(animationFrame * 116, 0, 116, 106);
+            spriteBatch.Draw(texture, position, source, Color.White, 0, new Vector2(0), 2, spriteEffects, 0);
         }
 
     }

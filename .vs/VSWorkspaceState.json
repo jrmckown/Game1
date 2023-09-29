@@ -1,4 +1,11 @@
 {
-  "ExpandedNodes": [],
+  "ExpandedNodes": [
+    "",
+    "\\Game1",
+    "\\Game1\\Game1",
+    "\\Game1\\Game1\\Screens",
+    "\\Game1\\Game1\\StateManagement"
+  ],
+  "SelectedNode": "\\Game1\\Game1\\KinemonSprite.cs",
   "PreviewInSolutionExplorer": false
 }

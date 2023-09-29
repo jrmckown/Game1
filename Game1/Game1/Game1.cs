@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game1.Screens;
+using Game1.StateManagement;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Runtime.CompilerServices;
@@ -9,6 +11,7 @@ namespace Game1
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private readonly ScreenManager _screenManager;
         Target target;
         
         KinemonSprite kinemon;
@@ -23,31 +26,48 @@ namespace Game1
             Content.RootDirectory = "Content";
             Window.Title = "Alley Fighter";
             IsMouseVisible = true;
+            var screenFactory = new ScreenFactory();
+            Services.AddService(typeof(IScreenFactory), screenFactory);
+
+            _screenManager = new ScreenManager(this);
+            Components.Add(_screenManager);
+
+            AddInitialScreens();
+        }
+
+        private void AddInitialScreens()
+        {
+            _screenManager.AddScreen(new BackgroundScreen(), null);
+            _screenManager.AddScreen(new MainMenuScreen(), null);
+            _screenManager.AddScreen(new SplashScreen(), null);
         }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            /*
             kinemon = new KinemonSprite();
             background = new Background();
             target = new Target();
             
-
+            */
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
+            /*
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             
             kinemon.LoadContent(Content);
             background.LoadContent(Content);
             target.LoadContent(Content);
-            
+            */
         }
 
         protected override void Update(GameTime gameTime)
         {
+            /*
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             kinemon.Update(gameTime);
@@ -57,13 +77,18 @@ namespace Game1
             {
                 target.Color = Color.Orange;
             }
-
+            else
+            {
+                target.Color = Color.White;
+            }
+            */
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            /*
             _spriteBatch.Begin();
             
             background.Draw(_spriteBatch);
@@ -72,6 +97,7 @@ namespace Game1
             kinemon.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.End();
+            */
             base.Draw(gameTime);
         }
     }

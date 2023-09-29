@@ -120,3 +120,9 @@ C:\Users\jaker\Source\Repos\Game1\Game1\Game1\obj\Debug\net6.0-windows\Game1.pdb
 C:\Users\jaker\Source\Repos\Game1\Game1\Game1\obj\Debug\net6.0-windows\Game1.genruntimeconfig.cache
 C:\Users\jaker\Source\Repos\Game1\Game1\Game1\obj\Debug\net6.0-windows\ref\Game1.dll
 C:\Users\jaker\Source\Repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\ball.xnb
+C:\Users\jaker\source\repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\idle_Kinemon.xnb
+C:\Users\jaker\source\repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\blank.xnb
+C:\Users\jaker\source\repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\background.xnb
+C:\Users\jaker\source\repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\splash.xnb
+C:\Users\jaker\source\repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\menufont.xnb
+C:\Users\jaker\source\repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\gradient.xnb
