@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System.Drawing.Drawing2D;
 using Game1.Collisions;
@@ -32,18 +33,18 @@ namespace Game1
 
         bool isGrounded = true;
 
-        Vector2 position = new Vector2(200, 360); // set to middle stage
+        Vector2 position = new Vector2(200, 320); // set to middle stage
 
         Vector2 velocity;
         Vector2 gravity = new Vector2(0, 1300);
 
         /// <summary>
-        /// loads bat sprite
+        /// loads kinemon sprite
         /// </summary>
         /// <param name="content"></param>
         public void LoadContent(ContentManager content)
         {
-            texture = content.Load<Texture2D>("idle_Kinemon");
+            texture = content.Load<Texture2D>("Kinemon929");
             
         }
 
@@ -60,7 +61,7 @@ namespace Game1
             keyboardState = Keyboard.GetState();
 
             //check if grounded
-            if (position.Y >= 360) isGrounded = true;
+            if (position.Y >= 320) isGrounded = true;
 
             else isGrounded = false;
 
@@ -120,7 +121,7 @@ namespace Game1
                 animationTimer -= 0.3;
             }
             SpriteEffects spriteEffects = (flipped) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            var source = new Rectangle(animationFrame * 116, 0, 116, 106);
+            var source = new Rectangle(animationFrame * 140, 0, 140, 127);
             spriteBatch.Draw(texture, position, source, Color.White, 0, new Vector2(0), 2, spriteEffects, 0);
         }
 

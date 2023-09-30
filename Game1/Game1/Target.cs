@@ -23,6 +23,8 @@ namespace Game1
         private BoundingRectangle bounds = new BoundingRectangle(new Vector2(600, 380), 132, 132);
         public BoundingRectangle Bounds => bounds;
 
+        public bool Collected { get; set; } = false;
+
         public void Update(GameTime gametime)
         {
             bounds.X = position.X - 16;

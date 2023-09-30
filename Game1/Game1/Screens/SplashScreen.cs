@@ -27,7 +27,6 @@ namespace Game1.Screens
         public override void HandleInput(GameTime gameTime, InputState input)
         {
             base.HandleInput(gameTime, input);
-
             _displayTime -= gameTime.ElapsedGameTime;
             if (_displayTime <= TimeSpan.Zero) ExitScreen();
         }

@@ -6,12 +6,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Game1.StateManagement;
 using System.Reflection.Metadata;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace Game1.Screens
 {
-    // This screen implements the actual game logic. It is just a
-    // placeholder to get the idea across: you'll probably want to
-    // put some more interesting gameplay in here!
     public class GameplayScreen : GameScreen
     {
         private ContentManager _content;
@@ -19,10 +18,12 @@ namespace Game1.Screens
 
         private float _pauseAlpha;
         private readonly InputAction _pauseAction;
-        
+        private SoundEffect _punch;
         private GraphicsDeviceManager _graphics;
         Target target = new Target();
+        bool _leftTarget = false;
 
+        private Song backgroundMusic;
         KinemonSprite kinemon = new KinemonSprite();
         Background background = new Background();
 
@@ -42,15 +43,16 @@ namespace Game1.Screens
             if (_content == null)
                 _content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            
-            
 
+
+            _punch = _content.Load<SoundEffect>("Hit_Hurt68");
+            backgroundMusic = _content.Load<Song>("Eggy Toast - Irritant");
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(backgroundMusic);
             kinemon.LoadContent(_content);
             background.LoadContent(_content);
             target.LoadContent(_content);
-            // A real game would probably have more content than this sample, so
-            // it would take longer to load. We simulate that by delaying for a
-            // while, giving you a chance to admire the beautiful loading screen.
+           
             Thread.Sleep(1000);
 
             // once the load has finished, we use ResetElapsedTime to tell the game's
@@ -86,8 +88,14 @@ namespace Game1.Screens
                 //Exit();
             kinemon.Update(gameTime);
             target.Update(gameTime);
-
-            if (target.Bounds.CollidesWith(kinemon.Bounds))
+            
+            if (!target.Collected && target.Bounds.CollidesWith(kinemon.Bounds))
+            {
+                target.Color = Color.Orange;
+                target.Collected = true;
+                _punch.Play();
+            }
+            else if (target.Bounds.CollidesWith(kinemon.Bounds))
             {
                 target.Color = Color.Orange;
             }
@@ -120,6 +128,7 @@ namespace Game1.Screens
             PlayerIndex player;
             if (_pauseAction.Occurred(input, ControllingPlayer, out player) || gamePadDisconnected)
             {
+                MediaPlayer.Pause();
                 ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
             }
             /*if (input == null)

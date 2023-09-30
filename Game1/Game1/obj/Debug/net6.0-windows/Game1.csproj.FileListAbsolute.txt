@@ -126,3 +126,7 @@ C:\Users\jaker\source\repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\b
 C:\Users\jaker\source\repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\splash.xnb
 C:\Users\jaker\source\repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\menufont.xnb
 C:\Users\jaker\source\repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\gradient.xnb
+C:\Users\jaker\source\repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\Hit_Hurt68.xnb
+C:\Users\jaker\source\repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\Kinemon929.xnb
+C:\Users\jaker\source\repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\Eggy Toast - Irritant.wma
+C:\Users\jaker\source\repos\Game1\Game1\Game1\bin\Debug\net6.0-windows\Content\Eggy Toast - Irritant.xnb
