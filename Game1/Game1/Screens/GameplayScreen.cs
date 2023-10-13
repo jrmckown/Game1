@@ -8,10 +8,11 @@ using Game1.StateManagement;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
+using SharpDX.MediaFoundation;
 
 namespace Game1.Screens
 {
-    public class GameplayScreen : GameScreen
+    public class GameplayScreen : GameScreen, IParticleEmitter
     {
         private ContentManager _content;
         private SpriteFont _gameFont;
@@ -20,12 +21,23 @@ namespace Game1.Screens
         private readonly InputAction _pauseAction;
         private SoundEffect _punch;
         private GraphicsDeviceManager _graphics;
+
         Target target = new Target();
         bool _leftTarget = false;
+        //firework particle system
+        FireworkParticleSystem _firework;
+
+        private KeyboardState keyboardState;
+        private KeyboardState priorKeyboardState;
 
         private Song backgroundMusic;
         KinemonSprite kinemon = new KinemonSprite();
         Background background = new Background();
+
+        public Vector2 Position { get; set; }
+
+
+        public Vector2 Velocity { get; set; }
 
         public GameplayScreen()
         {
@@ -43,16 +55,22 @@ namespace Game1.Screens
             if (_content == null)
                 _content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-
+            
 
             _punch = _content.Load<SoundEffect>("Hit_Hurt68");
             backgroundMusic = _content.Load<Song>("Eggy Toast - Irritant");
             MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = .7f;
+            
             MediaPlayer.Play(backgroundMusic);
             kinemon.LoadContent(_content);
             background.LoadContent(_content);
             target.LoadContent(_content);
-           
+
+            //initialize firework particles
+            _firework = new FireworkParticleSystem(ScreenManager.Game, 20);
+            ScreenManager.Game.Components.Add(_firework);
+
             Thread.Sleep(1000);
 
             // once the load has finished, we use ResetElapsedTime to tell the game's
@@ -95,6 +113,7 @@ namespace Game1.Screens
                 target.Collected = true;
                 _punch.Play();
             }
+
             else if (target.Bounds.CollidesWith(kinemon.Bounds))
             {
                 target.Color = Color.Orange;
@@ -115,8 +134,8 @@ namespace Game1.Screens
 
             // Look up inputs for the active player profile.
             int playerIndex = (int)ControllingPlayer.Value;
-
-            var keyboardState = input.CurrentKeyboardStates[playerIndex];
+            priorKeyboardState = keyboardState;
+            keyboardState = input.CurrentKeyboardStates[playerIndex];
             var gamePadState = input.CurrentGamePadStates[playerIndex];
 
             // The game pauses either if the user presses the pause button, or if
@@ -130,6 +149,15 @@ namespace Game1.Screens
             {
                 MediaPlayer.Pause();
                 ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
+            }
+
+            //activate firework
+            if (keyboardState.IsKeyDown(Keys.U) && priorKeyboardState.IsKeyUp(Keys.U))
+            {
+                //firework stuff
+                _firework.PlaceFirework(kinemon.Position );
+                _punch.Play();
+                
             }
             /*if (input == null)
                 throw new ArgumentNullException(nameof(input));
@@ -187,12 +215,23 @@ namespace Game1.Screens
 
             ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
             var spriteBatch = ScreenManager.SpriteBatch;
-            spriteBatch.Begin();
+            // Player-synched scrolling
+            float playerX = MathHelper.Clamp(kinemon.Position.X, 300, 1000);
+            float offsetX = 300 - playerX;
+            // Clamp the resulting vector to the visible region
+            
+
+            // Create the translation matrix representing the offset
+            Matrix transform = Matrix.CreateTranslation(offsetX, 0, 0);
+            // Draw the transformed game world
+            spriteBatch.Begin(transformMatrix: transform);
+            // TODO: Draw game sprites within the world, however you need to.
 
             background.Draw(spriteBatch);
             target.Draw(spriteBatch);
 
             kinemon.Draw(gameTime, spriteBatch);
+
 
             spriteBatch.End();
             base.Draw(gameTime);

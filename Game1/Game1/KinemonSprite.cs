@@ -18,6 +18,7 @@ namespace Game1
     {
         private GamePadState gamePadState;
 
+        FireworkParticleSystem _firework;
         private KeyboardState keyboardState;
 
         private BoundingRectangle bounds = new BoundingRectangle(new Vector2(200, 360), 240, 22*8);
@@ -33,10 +34,10 @@ namespace Game1
 
         bool isGrounded = true;
 
-        Vector2 position = new Vector2(200, 320); // set to middle stage
+        public Vector2 Position = new Vector2(200, 320); // set to middle stage
 
-        Vector2 velocity;
-        Vector2 gravity = new Vector2(0, 1300);
+        public Vector2 velocity;
+        private Vector2 gravity = new Vector2(0, 1300);
 
         /// <summary>
         /// loads kinemon sprite
@@ -48,7 +49,7 @@ namespace Game1
             
         }
 
-
+        
         /// <summary>
         /// updates kinemon sprite
         /// </summary>
@@ -61,7 +62,7 @@ namespace Game1
             keyboardState = Keyboard.GetState();
 
             //check if grounded
-            if (position.Y >= 320) isGrounded = true;
+            if (Position.Y >= 320) isGrounded = true;
 
             else isGrounded = false;
 
@@ -76,32 +77,41 @@ namespace Game1
             
             //if (keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S)) position += new Vector2(0, 5); // create crouching capability
 
+            if (keyboardState.IsKeyDown(Keys.U))
+            {
+                
+            }
+
             //strafe left
             if (keyboardState.IsKeyDown(Keys.Left) || keyboardState.IsKeyDown(Keys.A))
             {
-                position += new Vector2(-5, 0);
+                Position += new Vector2(-5, 0);
                 flipped = true;
             }
 
             //strafe right
             if (keyboardState.IsKeyDown(Keys.Right) || keyboardState.IsKeyDown(Keys.D))
             {
-                position += new Vector2(5, 0);
+                Position += new Vector2(5, 0);
                 flipped = false;
             }
+
+            //stop screen scrolling too far
+            if (Position.X < 0) Position.X = 0;
+            if (Position.X > 1200) Position.X = 1200;
 
             //check if grounded
             if (!isGrounded)
             {
                 velocity += gravity * t;
             }
-            position += velocity * t;
+            Position += velocity * t;
 
             //if (velocity.Y == 70) velocity.Y = 0;
             //acceleration = 9.8 m/s^2
 
-            bounds.X = position.X;
-            bounds.Y = position.Y;
+            bounds.X = Position.X;
+            bounds.Y = Position.Y;
         }
         /// <summary>
         /// draws the animated sprite
@@ -122,7 +132,7 @@ namespace Game1
             }
             SpriteEffects spriteEffects = (flipped) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             var source = new Rectangle(animationFrame * 140, 0, 140, 127);
-            spriteBatch.Draw(texture, position, source, Color.White, 0, new Vector2(0), 2, spriteEffects, 0);
+            spriteBatch.Draw(texture, Position, source, Color.White, 0, new Vector2(0), 2, spriteEffects, 0);
         }
 
     }

@@ -20,7 +20,7 @@ namespace Game1.Screens
             base.Activate();
             if (_content == null) _content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            _background = _content.Load<Texture2D>("splash");
+            _background = _content.Load<Texture2D>("YetiSplash");
             _displayTime = TimeSpan.FromSeconds(2);
         }
 

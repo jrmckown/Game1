@@ -12,6 +12,7 @@
             Llama,
         }
 
+        private readonly MenuEntry _attackHelp;
         private readonly MenuEntry _ungulateMenuEntry;
         private readonly MenuEntry _languageMenuEntry;
         private readonly MenuEntry _frobnicateMenuEntry;
@@ -25,6 +26,7 @@
 
         public OptionsMenuScreen() : base("Options")
         {
+            _attackHelp = new MenuEntry(string.Empty);
             _ungulateMenuEntry = new MenuEntry(string.Empty);
             _languageMenuEntry = new MenuEntry(string.Empty);
             _frobnicateMenuEntry = new MenuEntry(string.Empty);
@@ -34,12 +36,14 @@
 
             var back = new MenuEntry("Back");
 
+            _attackHelp.Selected += AttackHelpMenuEntrySelected;
             _ungulateMenuEntry.Selected += UngulateMenuEntrySelected;
             _languageMenuEntry.Selected += LanguageMenuEntrySelected;
             _frobnicateMenuEntry.Selected += FrobnicateMenuEntrySelected;
             _elfMenuEntry.Selected += ElfMenuEntrySelected;
             back.Selected += OnCancel;
 
+            MenuEntries.Add(_attackHelp);
             MenuEntries.Add(_ungulateMenuEntry);
             MenuEntries.Add(_languageMenuEntry);
             MenuEntries.Add(_frobnicateMenuEntry);
@@ -50,12 +54,18 @@
         // Fills in the latest values for the options screen menu text.
         private void SetMenuEntryText()
         {
+            _attackHelp.Text = "Press_U_To_Attack";
             _ungulateMenuEntry.Text = $"Preferred ungulate: {_currentUngulate}";
             _languageMenuEntry.Text = $"Language: {Languages[_currentLanguage]}";
             _frobnicateMenuEntry.Text = $"Frobnicate: {(_frobnicate ? "on" : "off")}";
             _elfMenuEntry.Text = $"elf: {_elf.ToString()}";
         }
 
+
+        private void AttackHelpMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        {
+
+        }
         private void UngulateMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             _currentUngulate++;
