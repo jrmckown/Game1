@@ -1,4 +1,6 @@
-﻿namespace Game1.Screens
+﻿using Microsoft.Xna.Framework;
+
+namespace Game1.Screens
 {
     // The options screen is brought up over the top of the main menu
     // screen, and gives the user a chance to configure the game
@@ -24,7 +26,7 @@
         private static bool _frobnicate = true;
         private static int _elf = 23;
 
-        public OptionsMenuScreen() : base("Options")
+        public OptionsMenuScreen(Game game) : base("Options", game)
         {
             _attackHelp = new MenuEntry(string.Empty);
             _ungulateMenuEntry = new MenuEntry(string.Empty);

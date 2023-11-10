@@ -24,11 +24,16 @@ namespace Game1
         private BoundingRectangle bounds = new BoundingRectangle(new Vector2(200, 360), 240, 22*8);
         public BoundingRectangle Bounds => bounds;
 
-        private Texture2D texture;
+        private Texture2D idleTexture;
+        private Texture2D attackTexture;
+        private Texture2D jumpTexture;
+
+        private StateEnum state = StateEnum.Idle;
 
         private bool flipped;
 
-        private double animationTimer;
+        private double idleTimer;
+        private double attackTimer;
 
         private short animationFrame = 1;
 
@@ -45,8 +50,9 @@ namespace Game1
         /// <param name="content"></param>
         public void LoadContent(ContentManager content)
         {
-            texture = content.Load<Texture2D>("Kinemon929");
-            
+            idleTexture = content.Load<Texture2D>("idle_kinemon");
+            attackTexture = content.Load<Texture2D>("Kinemon929");
+            // to do load jump animation
         }
 
         
@@ -69,18 +75,55 @@ namespace Game1
             //reset velocity if on ground
             if (isGrounded) velocity.Y = 0;
 
-            // Apply keyboard movement
-            if ((keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W) || keyboardState.IsKeyDown(Keys.Space)) && isGrounded)
+            //state machine
+            switch (state)
             {
-                velocity += new Vector2(0, -700);
+                case StateEnum.Idle:
+                    if ((keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W) || keyboardState.IsKeyDown(Keys.Space)) && isGrounded)
+                    {
+                        velocity += new Vector2(0, -700);
+                        state = StateEnum.Jump;
+                        
+                    }
+                    if (keyboardState.IsKeyDown(Keys.U))
+                    {
+                        state = StateEnum.Attack;
+                        attackTimer = 0;
+                        animationFrame= 0;
+                    }
+                    break;
+                case StateEnum.Jump:
+                    if (isGrounded)
+                    {
+                        state = StateEnum.Idle;
+                        
+                    }
+                    if (keyboardState.IsKeyDown(Keys.U))
+                    {
+                        state = StateEnum.Attack;
+                        animationFrame= 0;
+                        attackTimer = 0;
+                    }
+                    break;
+                case StateEnum.Attack:
+                    attackTimer += gametime.ElapsedGameTime.TotalSeconds;
+                    // todo damage
+                    if (attackTimer > 0.3)
+                    {
+                        if (isGrounded)
+                        {
+                            state = StateEnum.Idle;
+                        }
+                        else state = StateEnum.Jump;
+                    }
+                    break;
             }
+
+
             
             //if (keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S)) position += new Vector2(0, 5); // create crouching capability
 
-            if (keyboardState.IsKeyDown(Keys.U))
-            {
-                
-            }
+            
 
             //strafe left
             if (keyboardState.IsKeyDown(Keys.Left) || keyboardState.IsKeyDown(Keys.A))
@@ -121,17 +164,56 @@ namespace Game1
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             // update animation timer
-            animationTimer += gameTime.ElapsedGameTime.TotalSeconds;
-
+            idleTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            
             // update animation frame
-            if (animationTimer > 0.3)
-            {
-                animationFrame++;
-                if (animationFrame > 2) animationFrame = 1;
-                animationTimer -= 0.3;
-            }
+            
+
+
             SpriteEffects spriteEffects = (flipped) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            var source = new Rectangle(animationFrame * 140, 0, 140, 127);
+            Rectangle source = new();
+            Texture2D texture = idleTexture;
+            switch (state)
+            {
+                case StateEnum.Idle:
+                    {
+                        if (idleTimer > 0.3)
+                        {
+                            animationFrame++;
+                            if (animationFrame > 2) animationFrame = 1;
+                            idleTimer -= 0.3;
+                        }
+                        texture = idleTexture;
+                        source= new Rectangle(animationFrame * 116, 0, 116, 106);
+                        break;
+                    }
+                case StateEnum.Attack:
+                    {
+                        if (attackTimer > 0.3)
+                        {
+                            animationFrame++;
+                            if (animationFrame > 1) animationFrame = 0;
+                            attackTimer -= 0.3;
+                        }
+
+                        texture = attackTexture;
+                        source = new Rectangle(animationFrame * 140, 127, 140, 127); 
+                        break;
+                    }
+                case StateEnum.Jump:
+                    {
+                        if (idleTimer > 0.3)
+                        {
+                            animationFrame++;
+                            if (animationFrame > 2) animationFrame = 1;
+                            idleTimer -= 0.3;
+                        }
+                        texture = idleTexture;
+                        source = new Rectangle(animationFrame * 116, 0, 116, 106);
+                        break;
+                    }
+            }
+            
             spriteBatch.Draw(texture, Position, source, Color.White, 0, new Vector2(0), 2, spriteEffects, 0);
         }
 

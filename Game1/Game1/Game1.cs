@@ -31,6 +31,7 @@ namespace Game1
 
             _screenManager = new ScreenManager(this);
             Components.Add(_screenManager);
+            _graphics.ApplyChanges();
 
             AddInitialScreens();
         }
@@ -38,7 +39,7 @@ namespace Game1
         private void AddInitialScreens()
         {
             _screenManager.AddScreen(new BackgroundScreen(), null);
-            _screenManager.AddScreen(new MainMenuScreen(), null);
+            _screenManager.AddScreen(new MainMenuScreen(this), null);
             _screenManager.AddScreen(new SplashScreen(), null);
         }
 

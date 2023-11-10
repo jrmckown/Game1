@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Game1.StateManagement;
+using Basic3DExample;
 
 namespace Game1.Screens
 {
@@ -19,16 +20,18 @@ namespace Game1.Screens
         private readonly InputAction _menuDown;
         private readonly InputAction _menuSelect;
         private readonly InputAction _menuCancel;
+        Cube cube;
 
         // Gets the list of menu entries, so derived classes can add or change the menu contents.
         protected IList<MenuEntry> MenuEntries => _menuEntries;
 
-        protected MenuScreen(string menuTitle)
+        protected MenuScreen(string menuTitle, Game game)
         {
             _menuTitle = menuTitle;
 
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
+            cube = new Cube(game);
 
             _menuUp = new InputAction(
                 new[] { Buttons.DPadUp, Buttons.LeftThumbstickUp },
@@ -127,6 +130,7 @@ namespace Game1.Screens
         {
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
+            cube.Update(gameTime);
             // Update each nested MenuEntry object.
             for (int i = 0; i < _menuEntries.Count; i++)
             {
@@ -140,12 +144,14 @@ namespace Game1.Screens
             // make sure our entries are in the right place before we draw them
             UpdateMenuEntryLocations();
 
+            
             var graphics = ScreenManager.GraphicsDevice;
             var spriteBatch = ScreenManager.SpriteBatch;
             var font = ScreenManager.Font;
 
             spriteBatch.Begin();
 
+            cube.Draw();
             for (int i = 0; i < _menuEntries.Count; i++)
             {
                 var menuEntry = _menuEntries[i];

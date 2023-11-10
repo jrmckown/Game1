@@ -1,4 +1,5 @@
 ﻿using Game1.StateManagement;
+using Microsoft.Xna.Framework;
 
 namespace Game1.Screens
 {
@@ -6,11 +7,13 @@ namespace Game1.Screens
     // giving the player options to resume or quit.
     public class PauseMenuScreen : MenuScreen
     {
-        public PauseMenuScreen() : base("Paused")
+
+        Game _game {get; set; }
+        public PauseMenuScreen(Game game) : base("Paused", game)
         {
             var resumeGameMenuEntry = new MenuEntry("Resume Game");
             var quitGameMenuEntry = new MenuEntry("Quit Game");
-
+            _game = game;
             resumeGameMenuEntry.Selected += OnCancel;
             quitGameMenuEntry.Selected += QuitGameMenuEntrySelected;
 
@@ -31,7 +34,7 @@ namespace Game1.Screens
         // This uses the loading screen to transition from the game back to the main menu screen.
         private void ConfirmQuitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
         {
-            LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(), new MainMenuScreen());
+            LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(), new MainMenuScreen(_game));
         }
     }
 }

@@ -6,8 +6,10 @@ namespace Game1.Screens
     // The main menu screen is the first thing displayed when the game starts up.
     public class MainMenuScreen : MenuScreen
     {
-        public MainMenuScreen() : base("Main Menu")
+        Game _game { get; set; }
+        public MainMenuScreen(Game game) : base("Main Menu", game)
         {
+            _game = game;
             var playGameMenuEntry = new MenuEntry("Play Game");
             var optionsMenuEntry = new MenuEntry("Options");
             var exitMenuEntry = new MenuEntry("Exit");
@@ -23,12 +25,12 @@ namespace Game1.Screens
 
         private void PlayGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, new GameplayScreen());
+            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, new GameplayScreen(_game));
         }
 
         private void OptionsMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            ScreenManager.AddScreen(new OptionsMenuScreen(), e.PlayerIndex);
+            ScreenManager.AddScreen(new OptionsMenuScreen(_game), e.PlayerIndex);
         }
 
         protected override void OnCancel(PlayerIndex playerIndex)

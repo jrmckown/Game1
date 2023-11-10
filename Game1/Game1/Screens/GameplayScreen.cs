@@ -32,14 +32,16 @@ namespace Game1.Screens
 
         private Song backgroundMusic;
         KinemonSprite kinemon = new KinemonSprite();
+
         Background background = new Background();
+        Game game { get; set; }
 
         public Vector2 Position { get; set; }
 
 
         public Vector2 Velocity { get; set; }
 
-        public GameplayScreen()
+        public GameplayScreen(Game g)
         {
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
@@ -47,6 +49,7 @@ namespace Game1.Screens
             _pauseAction = new InputAction(
                 new[] { Buttons.Start, Buttons.Back },
                 new[] { Keys.Back, Keys.Escape }, true);
+            game = g;
         }
 
         // Load graphics content for the game
@@ -148,7 +151,7 @@ namespace Game1.Screens
             if (_pauseAction.Occurred(input, ControllingPlayer, out player) || gamePadDisconnected)
             {
                 MediaPlayer.Pause();
-                ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
+                ScreenManager.AddScreen(new PauseMenuScreen(game), ControllingPlayer);
             }
 
             //activate firework
