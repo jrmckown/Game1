@@ -21,12 +21,16 @@ namespace Game1
         FireworkParticleSystem _firework;
         private KeyboardState keyboardState;
 
+        private BoundingRectangle swordBounds = new BoundingRectangle(new Vector2(200+120, 360-60), 80, 40);
+
         private BoundingRectangle bounds = new BoundingRectangle(new Vector2(200, 360), 240, 22*8);
         public BoundingRectangle Bounds => bounds;
 
         private Texture2D idleTexture;
         private Texture2D attackTexture;
         private Texture2D jumpTexture;
+
+        private int health = 100;
 
         private StateEnum state = StateEnum.Idle;
 
@@ -152,9 +156,12 @@ namespace Game1
 
             //if (velocity.Y == 70) velocity.Y = 0;
             //acceleration = 9.8 m/s^2
+            
 
             bounds.X = Position.X;
             bounds.Y = Position.Y;
+            swordBounds.X = Position.X + 120;
+            swordBounds.Y = Position.Y - 60;
         }
         /// <summary>
         /// draws the animated sprite

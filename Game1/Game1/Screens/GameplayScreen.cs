@@ -19,8 +19,10 @@ namespace Game1.Screens
 
         private float _pauseAlpha;
         private readonly InputAction _pauseAction;
+        private Texture2D font;
         private SoundEffect _punch;
         private GraphicsDeviceManager _graphics;
+        private SpriteFont menufont;
 
         Target target = new Target();
         bool _leftTarget = false;
@@ -32,6 +34,7 @@ namespace Game1.Screens
 
         private Song backgroundMusic;
         KinemonSprite kinemon = new KinemonSprite();
+        EthanSprite ethan = new EthanSprite();
 
         Background background = new Background();
         Game game { get; set; }
@@ -67,8 +70,10 @@ namespace Game1.Screens
             
             MediaPlayer.Play(backgroundMusic);
             kinemon.LoadContent(_content);
+            ethan.LoadContent(_content);
             background.LoadContent(_content);
             target.LoadContent(_content);
+            menufont = _content.Load<SpriteFont>("menufont");
 
             //initialize firework particles
             _firework = new FireworkParticleSystem(ScreenManager.Game, 20);
@@ -106,7 +111,8 @@ namespace Game1.Screens
                 _pauseAlpha = Math.Max(_pauseAlpha - 1f / 32, 0);
 
             //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                //Exit();
+            //Exit();
+            ethan.Update(gameTime);
             kinemon.Update(gameTime);
             target.Update(gameTime);
             
@@ -116,6 +122,11 @@ namespace Game1.Screens
                 target.Collected = true;
                 _punch.Play();
             }
+
+            if (false) // if kinemon sword bounds intersect with ethan bounds
+            {
+                ethan.Health -= 25;
+            } 
 
             else if (target.Bounds.CollidesWith(kinemon.Bounds))
             {
@@ -232,7 +243,8 @@ namespace Game1.Screens
 
             background.Draw(spriteBatch);
             target.Draw(spriteBatch);
-
+            spriteBatch.DrawString(menufont, $"Boss Health: {ethan.Health}", new Vector2(900, 50), Color.Black);
+            ethan.Draw(gameTime, spriteBatch);
             kinemon.Draw(gameTime, spriteBatch);
 
 
